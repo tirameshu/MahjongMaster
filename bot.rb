@@ -25,14 +25,14 @@ Telegram::Bot::Client.run(token) do |bot|
             # bot.api.send_photo(chat_id: message.chat.id, photo: 
             # Faraday::UploadIO.new('/Users/mandy/Repos/MahjongMaster/photos/tiles.jpg', 'image/jpeg'))
             options = Telegram::Bot::Types::ReplyKeyboardMarkup
-            .new(keyboard: [%w(Tong(dots) Tiao/Suo(bamboos)), %w(Wan(characters) DaPai(honours))], one_time_keyboard: true)
+            .new(keyboard: [%w(Tong Tiao/Suo(bamboos)), %w(Wan(characters) DaPai(honours))], one_time_keyboard: true)
             bot.api.send_message(chat_id: person_id, text: reply, reply_markup: options)
-        when 'Tong', 'Dots'
+				when command.include?('Tong') || command.include?('Dots')
             reply = "Here is a list of dotted tiles 筒子 in ascending order!"
             #bot.api.send_photo(chat_id: message.chat.id, photo: 
              #   Faraday::UploadIO.new('/Users/mandy/Repos/MahjongMaster/photos/dots.jpg', 'image/jpeg'))
             bot.api.send_message(chat_id: person_id, text: reply)
-        when 'Tiao/Suo', 'Tiao', 'Suo', 'Bamboos'
+				when command.include?('iao') || command.include?('uo') || command.include?("amboo")
             reply = "Here is a list of bamboo tiles 条子/ 索子 in ascending order!"
             #bot.api.send_photo(chat_id: message.chat.id, photo: 
              #   Faraday::UploadIO.new('/Users/mandy/Repos/MahjongMaster/photos/bamboos.jpg', 'image/jpeg'))
