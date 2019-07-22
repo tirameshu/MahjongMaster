@@ -1,6 +1,7 @@
 require 'telegram/bot'
 
 token = ENV['TOKEN'] # env var returning nil instead of str
+puts token
 
 Telegram::Bot::Client.run(token) do |bot|
     bot.listen do |message|
