@@ -1,7 +1,6 @@
 require 'telegram/bot'
 
 token = ENV['TOKEN'] # env var returning nil instead of str
-puts token
 
 Telegram::Bot::Client.run(token) do |bot|
     bot.listen do |message|
@@ -23,8 +22,8 @@ Telegram::Bot::Client.run(token) do |bot|
             bot.api.send_message(chat_id: person_id, text: reply)
         when '/tiles'
             reply = "Here is a list of all the tiles in Mahjong! Choose what *suit(e)s* your interest!"
-            bot.api.send_photo(chat_id: message.chat.id, photo: 
-                Faraday::UploadIO.new('/Users/mandy/Repos/MahjongMaster/photos/tiles.jpg', 'image/jpeg'))
+            # bot.api.send_photo(chat_id: message.chat.id, photo: 
+            # Faraday::UploadIO.new('/Users/mandy/Repos/MahjongMaster/photos/tiles.jpg', 'image/jpeg'))
             options = Telegram::Bot::Types::ReplyKeyboardMarkup
             .new(keyboard: [%w(Tong(dots) Tiao/Suo(bamboos)), %w(Wan(characters) DaPai(honours))], one_time_keyboard: true)
             bot.api.send_message(chat_id: person_id, text: reply, reply_markup: options)
